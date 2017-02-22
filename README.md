@@ -8,7 +8,7 @@ This module for the [MagicMirror](https://github.com/MichMich/MagicMirror) shows
 
 ```bash
 cd ~/MagicMirror/modules # navigate to module folder
-git clone https://github.com/broberg/MMM-doomsDay.git # clone this repository
+git clone https://github.com/brobergp/MMM-doomsDay.git # clone this repository
 ```
 
   2\. Then, add the following into the `modules` section of your `config/config.js` file:
