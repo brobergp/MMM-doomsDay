@@ -61,7 +61,7 @@ Module.register("MMM-doomsDay", {
             timeLeft.innerHTML = daysLeft + " " + this.config.plural;
             timeLeft.className = "timeLeft";
         }
-        else if (daysLeft < 1) {
+        else if (daysLeft == 0) {
 
           var timeLeft = document.createElement("span")
           timeLeft.innerHTML = this.config.present;
