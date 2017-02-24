@@ -51,17 +51,17 @@ Module.register("MMM-doomsDay", {
         headerD.innerHTML = this.config.toWhat + "</br>";
         headerD.className = "doooom";
 
-        if (daysLeft == 1)       {
+        if (timeparser < 2)       {
             var timeLeft = document.createElement("span");
             timeLeft.innerHTML = daysLeft + " " + this.config.singular;
             timeLeft.className = "timeLeft";
         }
-        else if (daysLeft > 1)       {
+        else if (timeparser > 2)       {
             var timeLeft = document.createElement("span");
             timeLeft.innerHTML = daysLeft + " " + this.config.plural;
             timeLeft.className = "timeLeft";
         }
-        else if (daysLeft == 0) {
+        else if (timeparser < 1) {
 
           var timeLeft = document.createElement("span")
           timeLeft.innerHTML = this.config.present;
