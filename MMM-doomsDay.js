@@ -51,7 +51,7 @@ Module.register("MMM-doomsDay", {
         headerD.innerHTML = this.config.toWhat + "</br>";
         headerD.className = "doooom";
 
-        if (timeparser < 2)       {
+        if (timeparser < 2 && timeparser > 1)       {
             var timeLeft = document.createElement("span");
             timeLeft.innerHTML = daysLeft + " " + this.config.singular;
             timeLeft.className = "timeLeft";
