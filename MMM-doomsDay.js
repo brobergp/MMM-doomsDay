@@ -10,12 +10,12 @@
 Module.register("MMM-doomsDay", {
     // Default module config.
     defaults: {
-        doomsDay: "2018-02-23 24:00:00", // YYYY-MM-DD HH:MM:SS
+        doomsDay: "2017-08-27 24:00:00", // YYYY-MM-DD HH:MM:SS
         updateInterval: 5 * 3600000,
         toWhat: "Leaving for Paris!",
-        singular: "Day Left",
+        singular: "Day Left ",
         plural: "Days Left",
-        present: "IT'S TODAY!!",
+        present: "Let's Fly!",
     },
 
     // Define start sequence.
@@ -44,32 +44,34 @@ Module.register("MMM-doomsDay", {
         var now = new Date();
         var timeparser = Date.parse(doomsDay) - Date.parse(now);
         daysLeft = Math.round(timeparser/(1000*60*60*24));
-
+        daysCount = (timeparser/(1000*60*60*24));
 
         var wrapper = document.createElement("div");
         var headerD = document.createElement("span");
         headerD.innerHTML = this.config.toWhat + "</br>";
         headerD.className = "doooom";
 
-        if (daysLeft == 1) {
-            var timeLeft = document.createElement("span");
-            timeLeft.innerHTML = daysLeft + " " + this.config.singular;
-            timeLeft.className = "timeLeft";
-        }
-        else if (daysLeft > 2)       {
+        if (daysCount >= 1) {
+
+          if (daysLeft >= 2) {
             var timeLeft = document.createElement("span");
             timeLeft.innerHTML = daysLeft + " " + this.config.plural;
             timeLeft.className = "timeLeft";
-        }
-        else if (daysLeft < 1) {
-
-          var timeLeft = document.createElement("span")
-          timeLeft.innerHTML = this.config.present;
+          }
+          else {
+          var timeLeft = document.createElement("span");
+          timeLeft.innerHTML = daysLeft + " " + this.config.singular;
           timeLeft.className = "timeLeft";
-
+          }
         }
-        else
-        {
+
+        else if (daysCount < 1 && daysCount > 0) {
+            var timeLeft = document.createElement("span")
+            timeLeft.innerHTML = this.config.present;
+            timeLeft.className = "timeLeft";
+          }
+
+        else {
           var timeLeft = document.createElement("span")
           timeLeft.innerHTML = "death and despair, your time is up.";
           timeLeft.className = "timeEnded";
