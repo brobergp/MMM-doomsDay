@@ -16,6 +16,7 @@ Module.register("MMM-doomsDay", {
         singular: "Day Left ",
         plural: "Days Left",
         present: "Let's Fly!",
+		passed: "Death and despair, you missed it!"
     },
 
     // Define start sequence.
@@ -52,30 +53,25 @@ Module.register("MMM-doomsDay", {
         headerD.className = "doooom";
 
         if (daysCount >= 1) {
-
           if (daysLeft >= 2) {
             var timeLeft = document.createElement("span");
             timeLeft.innerHTML = daysLeft + " " + this.config.plural;
             timeLeft.className = "timeLeft";
+          } else {
+            var timeLeft = document.createElement("span");
+            timeLeft.innerHTML = daysLeft + " " + this.config.singular;
+            timeLeft.className = "timeLeft";
           }
-          else {
-          var timeLeft = document.createElement("span");
-          timeLeft.innerHTML = daysLeft + " " + this.config.singular;
-          timeLeft.className = "timeLeft";
-          }
-        }
-
-        else if (daysCount < 1 && daysCount > 0) {
+        } else if (daysCount < 1 && daysCount > 0) {
             var timeLeft = document.createElement("span")
             timeLeft.innerHTML = this.config.present;
             timeLeft.className = "timeLeft";
-          }
-
-        else {
+        } else {
           var timeLeft = document.createElement("span")
-          timeLeft.innerHTML = "death and despair, your time is up.";
+		  timeLeft.innerHTML = this.config.passed;
+          //timeLeft.innerHTML = "death and despair, your time is up.";
           timeLeft.className = "timeEnded";
-          headerD.innerHTML = "</BR>";
+          //headerD.innerHTML = "</br>";
         }
 
         wrapper.appendChild(headerD);
