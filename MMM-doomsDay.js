@@ -10,7 +10,7 @@
 Module.register("MMM-doomsDay", {
     // Default module config.
     defaults: {
-        doomsDay: "2017-03-06 24:00:00", // YYYY-MM-DD HH:MM:SS
+        doomsDay: "2017-03-01 24:00:00", // YYYY-MM-DD HH:MM:SS
         updateInterval: 60 * 60 * 1000,
         toWhat: "Leaving for Paris!",
         singular: "Day Left ",
@@ -44,30 +44,26 @@ Module.register("MMM-doomsDay", {
         var now = new Date();
         var timeparser = Date.parse(doomsDay) - Date.parse(now);
         daysLeft = Math.floor(timeparser/(1000*60*60*24));
-        daysCount = (timeparser/(1000*60*60*24));
 
         var wrapper = document.createElement("div");
         var headerD = document.createElement("span");
         headerD.innerHTML = this.config.toWhat + "</br>";
         headerD.className = "doooom";
 
-        if (daysCount >= 1) {
-
-          if (daysLeft >= 2) {
-            var timeLeft = document.createElement("span");
-            timeLeft.innerHTML = daysLeft + " " + this.config.plural;
+        if (daysLeft == 0) {
+            var timeLeft = document.createElement("span")
+            timeLeft.innerHTML = this.config.present;
             timeLeft.className = "timeLeft";
           }
-          else {
+
+        else if (daysLeft == 1) {
           var timeLeft = document.createElement("span");
           timeLeft.innerHTML = daysLeft + " " + this.config.singular;
           timeLeft.className = "timeLeft";
           }
-        }
-
-        else if (daysCount < 1 && daysCount > 0) {
-            var timeLeft = document.createElement("span")
-            timeLeft.innerHTML = this.config.present;
+        else if (daysLeft >= 2) {
+            var timeLeft = document.createElement("span");
+            timeLeft.innerHTML = daysLeft + " " + this.config.plural;
             timeLeft.className = "timeLeft";
           }
 
