@@ -10,8 +10,8 @@
 Module.register("MMM-doomsDay", {
     // Default module config.
     defaults: {
-        doomsDay: "2017-08-27 24:00:00", // YYYY-MM-DD HH:MM:SS
-        updateInterval: 5 * 3600000,
+        doomsDay: "2017-03-06 24:00:00", // YYYY-MM-DD HH:MM:SS
+        updateInterval: 60 * 60 * 1000,
         toWhat: "Leaving for Paris!",
         singular: "Day Left ",
         plural: "Days Left",
@@ -24,9 +24,9 @@ Module.register("MMM-doomsDay", {
 
         Log.info("Starting module: " + this.name);
 
-        if (this.config.updateInterval < 1 * 3600000) {
-            // 1 hour minimum update interval
-            this.config.updateInterval = 1 * 3600000;
+        if (this.config.updateInterval < 10 * 60 * 1000) {
+            // 10 min minimum update interval
+            this.config.updateInterval = 10 * 60 * 1000;
         }
         setInterval(function() {
             self.updateDom();
@@ -43,7 +43,7 @@ Module.register("MMM-doomsDay", {
         var doomsDay = new Date(this.config.doomsDay);
         var now = new Date();
         var timeparser = Date.parse(doomsDay) - Date.parse(now);
-        daysLeft = Math.round(timeparser/(1000*60*60*24));
+        daysLeft = Math.floor(timeparser/(1000*60*60*24));
         daysCount = (timeparser/(1000*60*60*24));
 
         var wrapper = document.createElement("div");
