@@ -38,7 +38,7 @@ The following properties can be configured:
 
 | option | description |
 | ------------- | ------------- |
-| `updateInterval` | time between updates in ms, default is `5 * 3600000` (5 hours) |
+| `updateInterval` | time between updates in ms, default is `60 * 60 * 1000` (1 hour) |
 | `toWhat` | the title of your countdown event |
 | `singular` | what it should say when it's only one day left, default is `Day Left` |
 | `plural` | what it should say when it's more days left, default is `Days Left` |
