@@ -18,8 +18,8 @@ git clone https://github.com/brobergp/MMM-doomsDay.git # clone this repository
     module: 'MMM-doomsDay',
     position: 'top_center', // This can be any of the regions, best results in center regions
     config: {
-        doomsDay: "2018-02-23 24:00:00", // YYYY-MM-DD HH:MM:SS
-        toWhat: "Leaving for Paris!",
+        doomsDay: "2018-02-23 24:00:00", // YYYY-MM-DD HH:MM:SS, Do not slter the time, just tha date
+        ToWhat: "Leaving for Paris!",
         
         // See 'Configuration options' for more information.
     }
@@ -42,5 +42,5 @@ The following properties can be configured:
 | `toWhat` | the title of your countdown event |
 | `singular` | what it should say when it's only one day left, default is `Day Left` |
 | `plural` | what it should say when it's more days left, default is `Days Left` |
-| `doomsDay` | date and time as a string, the end day of the countdown, format is `YYYY-MM-DD HH:MM:SS`, default is `"2018-02-23 24:00:00"`, recommend that you don't alter the hour, keep it at `24:00:00` |
+| `doomsDay` | date and time as a string, the end day of the countdown, format is `YYYY-MM-DD HH:MM:SS`, default is `"2018-02-23 24:00:00"`, don't alter the hour, keep it at `24:00:00` |
 | `present` | What it says when the day is finally here! |
