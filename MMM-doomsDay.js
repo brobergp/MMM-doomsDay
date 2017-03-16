@@ -10,12 +10,13 @@
 Module.register("MMM-doomsDay", {
     // Default module config.
     defaults: {
-        doomsDay: "2017-03-01 24:00:00", // YYYY-MM-DD HH:MM:SS
+        doomsDay: "2018-03-01 24:00:00", // YYYY-MM-DD HH:MM:SS
         updateInterval: 60 * 60 * 1000,
         toWhat: "Leaving for Paris!",
         singular: "Day Left ",
         plural: "Days Left",
         present: "Let's Fly!",
+        timesUp: "death and despair, your time is up."
     },
 
     // Define start sequence.
@@ -69,7 +70,7 @@ Module.register("MMM-doomsDay", {
 
         else {
           var timeLeft = document.createElement("span")
-          timeLeft.innerHTML = "death and despair, your time is up.";
+          timeLeft.innerHTML = this.config.timesUp;
           timeLeft.className = "timeEnded";
           headerD.innerHTML = "</BR>";
         }
