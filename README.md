@@ -44,3 +44,4 @@ The following properties can be configured:
 | `plural` | what it should say when it's more days left, default is `Days Left` |
 | `doomsDay` | date and time as a string, the end day of the countdown, format is `YYYY-MM-DD HH:MM:SS`, default is `"2018-02-23 24:00:00"`, don't alter the hour, keep it at `24:00:00` |
 | `present` | What it says when the day is finally here! |
+| `passed` | What it says when the day passed, default is `Death and despair, your time is up.`|

@@ -16,6 +16,7 @@ Module.register("MMM-doomsDay", {
         singular: "Day Left ",
         plural: "Days Left",
         present: "Let's Fly!",
+		passed: "Death and despair, your time is up."
     },
 
     // Define start sequence.
@@ -69,9 +70,9 @@ Module.register("MMM-doomsDay", {
 
         else {
           var timeLeft = document.createElement("span")
-          timeLeft.innerHTML = "death and despair, your time is up.";
+          timeLeft.innerHTML = this.config.passed;
           timeLeft.className = "timeEnded";
-          headerD.innerHTML = "</BR>";
+          //headerD.innerHTML = "</BR>";
         }
 
         wrapper.appendChild(headerD);
