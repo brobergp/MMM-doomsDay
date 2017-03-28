@@ -19,7 +19,7 @@ git clone https://github.com/brobergp/MMM-doomsDay.git # clone this repository
     position: 'top_center', // This can be any of the regions, best results in center regions
     config: {
         doomsDay: "2018-02-23 24:00:00", // YYYY-MM-DD HH:MM:SS, Do not alter the time, just the date
-        ToWhat: "Leaving for Paris!",
+        toWhat: "Leaving for Paris!",
         
         // See 'Configuration options' for more information.
     }
