@@ -62,28 +62,31 @@ Module.register("MMM-doomsDay", {
 
         var wrapper         = document.createElement("div");
         var headerD         = document.createElement("span");
-        var timer           = document.createElement("span")
 
         headerD.innerHTML   = this.config.toWhat + "</br>";
         headerD.className   = "doooom";
 
 
         if (timeLeft == 0) {
+            var timer = document.createElement("span")
             timer.innerHTML = this.config.present;
             timer.className = "timer";
         }
 
         else if (timeLeft == 1) {
+            var timer = document.createElement("span")
             timer.innerHTML = timeLeft + " " + this.config.singular;
             timer.className = "timer";
         }
 
         else if (timeLeft >= 2) {
+            var timer = document.createElement("span")
             timer.innerHTML = timeLeft + " " + this.config.plural;
             timer.className = "timer";
         }
 
         else {
+            var timer = document.createElement("span")
             timer.innerHTML = this.config.timesUp;
             timer.className = "timeEnded";
             headerD.innerHTML = "</br>";
