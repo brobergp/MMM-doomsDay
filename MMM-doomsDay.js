@@ -21,21 +21,21 @@ Module.register("MMM-doomsDay", {
         timesUp:        "Death and despair, your time is up."
     },
 
-    // Formats for different time-count.
-    // Note that the updateInterval is capped at 1 minute.
-    var parseFormats = {
-        'seconds':  1000,
-        'minutes':  1000*60,
-        'hours':    1000*60*60,
-        'days':     1000*60*60*24
-    },
-
 
     // Define start sequence.
     start: function() {
         var self = this;
 
         Log.info("Starting module: " + this.name);
+
+        // Formats for different time-count.
+        // Note that the updateInterval is capped at 1 minute.
+        this.parseFormats = {
+            seconds:    1000,
+            minutes:    1000*60,
+            hours:      1000*60*60,
+            days:       1000*60*60*24
+        };
 
         if (this.config.updateInterval < 60 * 1000) {
             // 1 min minimum update interval
@@ -58,7 +58,7 @@ Module.register("MMM-doomsDay", {
         var doomsDay        = new Date(this.config.doomsDay);
         var now             = new Date();
         var timeparser      = Date.parse(doomsDay) - Date.parse(now);
-        var timeLeft        = Math.floor(timeparser / parseFormats[this.config.timeFormat]);
+        var timeLeft        = Math.floor(timeparser / (this.parseFormats[this.config.timeFormat]));
 
         var wrapper         = document.createElement("div");
         var headerD         = document.createElement("span");
@@ -66,6 +66,7 @@ Module.register("MMM-doomsDay", {
         headerD.innerHTML   = this.config.toWhat + "</br>";
         headerD.className   = "doooom";
 
+        Log.info("Time left: " + timeLeft);
 
         if (timeLeft == 0) {
             var timer = document.createElement("span")
