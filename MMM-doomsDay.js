@@ -11,12 +11,12 @@
 Module.register("MMM-doomsDay", {
     // Default module config.
     defaults: {
-        doomsDay:       "2018-03-01 24:00:00", // YYYY-MM-DD HH:MM:SS
+        doomsDay:       "2018-06-18 06:06:06", // YYYY-MM-DD HH:MM:SS
         updateInterval: 60 * 60 * 1000,
         toWhat:         "Leaving for Hell!",
         timeFormat:     'minutes',
-        singular:       "Minute left",
-        plural:         "Minutes left",
+        singular:       "minute left",
+        plural:         "minutes left",
         present:        "Get your chainsaw!",
         timesUp:        "Death and despair, your time is up."
     },
