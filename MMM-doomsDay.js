@@ -3,21 +3,24 @@
 /* Magic Mirror
  * Module: MMM-doomsDay
  *
- * By Pierre Broberg
+ * Original code
+ * by Pierre Broberg
  * MIT Licensed.
  */
 
 Module.register("MMM-doomsDay", {
     // Default module config.
     defaults: {
-        doomsDay: "2018-03-01 24:00:00", // YYYY-MM-DD HH:MM:SS
+        doomsDay:       "2018-06-18 06:06:06", // YYYY-MM-DD HH:MM:SS
         updateInterval: 60 * 60 * 1000,
-        toWhat: "Leaving for Paris!",
-        singular: "Day Left ",
-        plural: "Days Left",
-        present: "Let's Fly!",
-        timesUp: "death and despair, your time is up."
+        toWhat:         "Leaving for Hell!",
+        timeFormat:     'minutes',
+        singular:       "minute left",
+        plural:         "minutes left",
+        present:        "Get your chainsaw!",
+        timesUp:        "Death and despair, your time is up."
     },
+
 
     // Define start sequence.
     start: function() {
@@ -25,58 +28,73 @@ Module.register("MMM-doomsDay", {
 
         Log.info("Starting module: " + this.name);
 
-        if (this.config.updateInterval < 10 * 60 * 1000) {
-            // 10 min minimum update interval
-            this.config.updateInterval = 10 * 60 * 1000;
+        // Formats for different time-count.
+        // Note that the updateInterval is capped at 1 minute.
+        this.parseFormats = {
+            seconds:    1000,
+            minutes:    1000*60,
+            hours:      1000*60*60,
+            days:       1000*60*60*24
+        };
+
+        if (this.config.updateInterval < 60 * 1000) {
+            // 1 min minimum update interval
+            this.config.updateInterval = 60 * 1000;
         }
         setInterval(function() {
             self.updateDom();
         }, this.config.updateInterval);
     },
 
-    // Define required styles
+
+    // Define required styles.
     getStyles: function () {
         return ["MMM-doomsDay.css"];
     },
 
+
     // Override dom generator.
     getDom: function() {
-        var doomsDay = new Date(this.config.doomsDay);
-        var now = new Date();
-        var timeparser = Date.parse(doomsDay) - Date.parse(now);
-        daysLeft = Math.floor(timeparser/(1000*60*60*24));
+        var doomsDay        = new Date(this.config.doomsDay);
+        var now             = new Date();
+        var timeparser      = Date.parse(doomsDay) - Date.parse(now);
+        var timeLeft        = Math.floor(timeparser / (this.parseFormats[this.config.timeFormat]));
 
-        var wrapper = document.createElement("div");
-        var headerD = document.createElement("span");
-        headerD.innerHTML = this.config.toWhat + "</br>";
-        headerD.className = "doooom";
+        var wrapper         = document.createElement("div");
+        var headerD         = document.createElement("span");
 
-        if (daysLeft == 0) {
-            var timeLeft = document.createElement("span")
-            timeLeft.innerHTML = this.config.present;
-            timeLeft.className = "timeLeft";
-          }
+        headerD.innerHTML   = this.config.toWhat + "</br>";
+        headerD.className   = "doooom";
 
-        else if (daysLeft == 1) {
-          var timeLeft = document.createElement("span");
-          timeLeft.innerHTML = daysLeft + " " + this.config.singular;
-          timeLeft.className = "timeLeft";
-          }
-        else if (daysLeft >= 2) {
-            var timeLeft = document.createElement("span");
-            timeLeft.innerHTML = daysLeft + " " + this.config.plural;
-            timeLeft.className = "timeLeft";
-          }
+        Log.info("Time left: " + timeLeft);
+
+        if (timeLeft == 0) {
+            var timer = document.createElement("span")
+            timer.innerHTML = this.config.present;
+            timer.className = "timer";
+        }
+
+        else if (timeLeft == 1) {
+            var timer = document.createElement("span")
+            timer.innerHTML = timeLeft + " " + this.config.singular;
+            timer.className = "timer";
+        }
+
+        else if (timeLeft >= 2) {
+            var timer = document.createElement("span")
+            timer.innerHTML = timeLeft + " " + this.config.plural;
+            timer.className = "timer";
+        }
 
         else {
-          var timeLeft = document.createElement("span")
-          timeLeft.innerHTML = this.config.timesUp;
-          timeLeft.className = "timeEnded";
-          headerD.innerHTML = "</BR>";
+            var timer = document.createElement("span")
+            timer.innerHTML = this.config.timesUp;
+            timer.className = "timeEnded";
+            headerD.innerHTML = "</br>";
         }
 
         wrapper.appendChild(headerD);
-        wrapper.appendChild(timeLeft);
+        wrapper.appendChild(timer);
         return wrapper;
     }
 });
